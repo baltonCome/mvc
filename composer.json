@@ -1,0 +1,8 @@
+{
+    "name": "savagery/mvc",
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    }
+}
