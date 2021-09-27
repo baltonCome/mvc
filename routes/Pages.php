@@ -15,8 +15,14 @@ $router->get('/about',[
     }
 ]);
 
-$router->get('/page/{idPage}/{action}',[
-    function($idPage, $action){
-        return new Response(200, 'Page'.$idPage.' - '.$action);
+$router->get('/feedback',[
+    function(){
+        return new Response(200, Pages\Feedback::getFeedback());
+    }
+]);
+
+$router->POST('/feedback',[
+    function($request){
+        return new Response(200, Pages\Feedback::saveFeedback($request));
     }
 ]);

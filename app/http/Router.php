@@ -16,7 +16,7 @@ class Router{
     //Construtor and instance of the class Request
     public function __construct($url){
  
-        $this->request = new Request();
+        $this->request = new Request($this);
         $this->url = $url;
         $this->setPrefix();
     }
@@ -73,12 +73,7 @@ class Router{
 
     //returns the URI without the prefix
     private function getUri(){
-
-        //Bro, aqui fizeste uma gambiarra, sem a barra no fim de linha
-        //de codigo abaixo o URI não é escapado correctamente e nao funciona, 
-        //então se algum dia tiveres problemas com rotas neste projecto
-        //ou em qualquer outro que tenha este como base, saiba que eu tambem 
-        //não sei o que deves fazer, vais ter de procurar sua propria resposta.
+ 
         $uri = $this->request->getUri();
     
         $xUri = strlen($this->prefix) ? explode($this->prefix, $uri) : [$uri];
