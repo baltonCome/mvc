@@ -5,6 +5,7 @@ require __DIR__.'/../vendor/autoload.php';
 use \App\Util\View;
 use \WilliamCosta\DotEnv\Environment;
 use \WilliamCosta\DatabaseManager\Database;
+use \App\Http\Middleware\Queue as MiddleQueue;
 
 Environment::load(__DIR__.'/../');
 
@@ -17,11 +18,17 @@ Database::config(
     getenv('DB_PORT')
 );
 
-
-
 //The URL is defined in the .env file btw
 define('URL', getenv('URL'));
  
 View::init([
     'URL' => URL
+]);
+
+MiddleQueue::setMap([
+    'maintenance' => \App\Http\Middleware\Maintenance::class
+]);
+
+MiddleQueue::setDefault([
+    'maintenance'
 ]);
