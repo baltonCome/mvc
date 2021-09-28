@@ -16,8 +16,8 @@ $router->get('/about',[
 ]);
 
 $router->get('/feedback',[
-    function(){
-        return new Response(200, Pages\Feedback::getFeedback());
+    function($request){
+        return new Response(200, Pages\Feedback::getFeedback($request));
     }
 ]);
 

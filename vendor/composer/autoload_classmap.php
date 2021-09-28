@@ -7,4 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
+    'WilliamCosta\\DatabaseManager\\Database' => $vendorDir . '/william-costa/database-manager/src/Database.php',
+    'WilliamCosta\\DatabaseManager\\Pagination' => $vendorDir . '/william-costa/database-manager/src/Pagination.php',
+    'WilliamCosta\\DotEnv\\Environment' => $vendorDir . '/william-costa/dot-env/src/Environment.php',
 );

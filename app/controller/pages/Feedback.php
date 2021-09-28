@@ -4,14 +4,23 @@ namespace App\Controller\Pages;
 
 use \App\Util\View;
 use \App\Model\Entity\Feedback as EntityFeedback;
+use \WilliamCosta\DatabaseManager\Pagination;
 
 class Feedback extends Page{
 
-    public static function getFeedbackItems(){
+
+    public static function getFeedbackItems($request, &$pagination){
 
         $items = '';
 
-        $results = EntityFeedback::getFeedback(null, 'id DESC');
+        $quant = EntityFeedback::getFeedback(null,null,null,'Count(8) as quantity')->fetchObject() -> quantity;
+        
+        $queryParams = $request->getQueryParams();
+        $actualPage = $queryParams['page'] ?? 1;
+
+        $pagination = new Pagination($quant, $actualPage, 4);
+
+        $results = EntityFeedback::getFeedback(null, 'id DESC', $pagination->getLimit());
 
         while($feedback =  $results->fetchObject(EntityFeedback::class)){
 
@@ -24,10 +33,11 @@ class Feedback extends Page{
         return $items; 
     }
 
-    public static function getFeedback(){
+    public static function getFeedback($request){
 
         $content = View::render('pages/feedback',[
-            'items' => self::getFeedbackItems()
+            'items' => self::getFeedbackItems($request, $pagination),
+            'pagination' => parent::getPagination($request, $pagination)
         ]);
 
         return parent::getPage('Feedback', $content);
@@ -42,6 +52,7 @@ class Feedback extends Page{
         $feedback-> name = $postVars['name'];
         $feedback-> message = $postVars['message'];
         $feedback->save();
-        return self::getFeedback();
+
+        return self::getFeedback($request);
     }
 }

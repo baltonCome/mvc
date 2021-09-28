@@ -35,6 +35,9 @@ class ComposerStaticInitbdacd89a99a800cdaa45abb1339d2b3c
 
     public static $classMap = array (
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
+        'WilliamCosta\\DatabaseManager\\Database' => __DIR__ . '/..' . '/william-costa/database-manager/src/Database.php',
+        'WilliamCosta\\DatabaseManager\\Pagination' => __DIR__ . '/..' . '/william-costa/database-manager/src/Pagination.php',
+        'WilliamCosta\\DotEnv\\Environment' => __DIR__ . '/..' . '/william-costa/dot-env/src/Environment.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

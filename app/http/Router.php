@@ -121,4 +121,8 @@ class Router{
             return new Response($e->getCode(), $e->getMessage()); 
         }
     }
+
+    public function getCurrentUrl(){
+        return $this->url.$this->getUri();
+    }
 }
