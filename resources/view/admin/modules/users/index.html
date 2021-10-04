@@ -1,0 +1,27 @@
+<h1>Users</h1>
+
+<hr>
+<a href="{{URL}}/admin/users/new">
+    <button type="button" class="btn btn-success">Add User</button>
+</a>
+<hr>
+
+{{status}}
+
+<p class="h3">Here are all our</p>
+<p>Allowed Users</p>
+
+<table class="table table-light table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th style="width: 200px;">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{items}}
+    </tbody>
+</table>
+{{pagination}}
