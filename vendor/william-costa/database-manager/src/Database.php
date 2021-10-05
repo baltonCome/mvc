@@ -175,7 +175,7 @@ class Database{
     //EXECUTA A QUERY
     $this->execute($query);
 
-    //RETORNA SUCESSO
+    //RETORNA SUCCESS
     return true;
   }
 

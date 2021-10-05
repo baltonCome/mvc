@@ -60,4 +60,66 @@ class Feedback extends Api{
             'date' => $feedback->date
         ];
     }
+
+    public static function setNewFeedback($request){
+
+        $postVars = $request->getPostVars();
+
+        if(!isset($postVars['name']) or !isset($postVars['message'])){
+            throw new \Exception("Name and message fields are required", 400);
+        }
+
+        $feedback = new EntityFeedback;
+        $feedback ->name  = $postVars['name'];
+        $feedback ->message  = $postVars['message'];
+        $feedback ->save();
+
+        return[
+            'id' => (int)$feedback ->id,
+            'name' => $feedback->name,
+            'message' => $feedback->message,
+            'date' => $feedback->date
+        ];
+    }
+
+    public static function setEditFeedback($request, $id){
+
+        $postVars = $request->getPostVars();
+
+        if(!isset($postVars['name']) or !isset($postVars['message'])){
+            throw new \Exception("Name and message fields are required", 400);
+        }
+
+        $feedback = EntityFeedback::getFeedbackById($id);
+
+        if(!$feedback instanceof EntityFeedback){
+            throw new \Exception("Unable to find requested feedback ".$id, 404);
+        }
+
+        $feedback ->name  = $postVars['name'];
+        $feedback ->message  = $postVars['message'];
+        $feedback ->edit();
+
+        return[
+            'id' => (int)$feedback ->id,
+            'name' => $feedback->name,
+            'message' => $feedback->message,
+            'date' => $feedback->date
+        ];
+    }
+
+    public static function setDeleteFeedback($request, $id){
+
+        $feedback = EntityFeedback::getFeedbackById($id);
+
+        if(!$feedback instanceof EntityFeedback){
+            throw new \Exception("Unable to find requested feedback ".$id, 404);
+        }
+
+        $feedback ->remove();
+
+        return[
+            'success' => true
+        ];
+    }
 }

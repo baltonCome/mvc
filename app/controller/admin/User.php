@@ -87,7 +87,7 @@ class User extends Page{
         $password = $postVars['password'] ?? '';
 
         $userEmail = EntityUser::getUserByEmail($email);
-        if($userEmail instanceof EmtityUser){
+        if($userEmail instanceof EntityUser){
 
             $request->getRouter()->redirect('/admin/users/new?status=duplicated');
         }
