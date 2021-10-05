@@ -13,7 +13,7 @@ class Feedback extends Page{
 
         $items = '';
 
-        $quant = EntityFeedback::getFeedback(null,null,null,'Count(8) as quantity')->fetchObject() -> quantity;
+        $quant = EntityFeedback::getFeedback(null,null,null,'Count(*) as quantity')->fetchObject() -> quantity;
         
         $queryParams = $request->getQueryParams();
         $actualPage = $queryParams['page'] ?? 1;

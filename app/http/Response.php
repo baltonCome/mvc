@@ -43,6 +43,9 @@ class Response{
             case 'text/html':
                 echo $this->content;
                 die;
+            case 'application/json':
+                echo json_encode($this->content, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+                die;
         }
     }
 }

@@ -13,6 +13,7 @@ class Router{
     private $prefix = '';
     private $routes = [];
     private $request;
+    private $contentType = 'text/html';
 
     //Construtor and instance of the class Request
     public function __construct($url){
@@ -20,6 +21,10 @@ class Router{
         $this->request = new Request($this);
         $this->url = $url;
         $this->setPrefix();
+    }
+
+    public function setContentType($contentType){
+        $this->contentType = $contentType;
     }
 
     //Defining routes prefix
@@ -80,7 +85,7 @@ class Router{
         $uri = $this->request->getUri();
     
         $xUri = strlen($this->prefix) ? explode($this->prefix, $uri) : [$uri];
-        return end($xUri);
+        return rtrim(end($xUri));
     }
 
     //gets the data of the actual route
@@ -121,7 +126,22 @@ class Router{
             }
             return (new MiddleQueue($route['middlewares'], $route['controller'], $args))->next($this->request);
         } catch (Exception $e) {
-            return new Response($e->getCode(), $e->getMessage()); 
+            return new Response($e->getCode(), $e->getMessage(), $this->contentType); 
+        }
+    }
+
+    private function getErrorMessage($message){
+
+        switch ($this->contentType) {
+            case 'application/json':
+                return[
+                    'error' => $message
+                ];
+                break;
+            
+            default:
+                return $message;
+                break;
         }
     }
 
