@@ -59,6 +59,17 @@ class User extends Api{
         ];
     }
 
+    public static function getCurrentUser($request){
+
+        $user = $request->user;
+
+        return[
+            'id' => (int)$user ->id,
+            'name' => $user->name,
+            'email' => $user->email
+        ];
+    }
+
     public static function setNewUser($request){
 
         $postVars = $request->getPostVars();

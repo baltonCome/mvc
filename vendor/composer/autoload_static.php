@@ -12,6 +12,10 @@ class ComposerStaticInitbdacd89a99a800cdaa45abb1339d2b3c
             'WilliamCosta\\DotEnv\\' => 20,
             'WilliamCosta\\DatabaseManager\\' => 29,
         ),
+        'F' => 
+        array (
+            'Firebase\\JWT\\' => 13,
+        ),
         'A' => 
         array (
             'App\\' => 4,
@@ -27,6 +31,10 @@ class ComposerStaticInitbdacd89a99a800cdaa45abb1339d2b3c
         array (
             0 => __DIR__ . '/..' . '/william-costa/database-manager/src',
         ),
+        'Firebase\\JWT\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/firebase/php-jwt/src',
+        ),
         'App\\' => 
         array (
             0 => __DIR__ . '/../..' . '/app',
@@ -35,9 +43,6 @@ class ComposerStaticInitbdacd89a99a800cdaa45abb1339d2b3c
 
     public static $classMap = array (
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
-        'WilliamCosta\\DatabaseManager\\Database' => __DIR__ . '/..' . '/william-costa/database-manager/src/Database.php',
-        'WilliamCosta\\DatabaseManager\\Pagination' => __DIR__ . '/..' . '/william-costa/database-manager/src/Pagination.php',
-        'WilliamCosta\\DotEnv\\Environment' => __DIR__ . '/..' . '/william-costa/dot-env/src/Environment.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
